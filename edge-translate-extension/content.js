@@ -8,7 +8,6 @@ document.addEventListener("mouseup", function () {
 
     const rect = window.getSelection().getRangeAt(0).getBoundingClientRect();
     const button = createTranslateButton(rect);
-
     button.addEventListener("click", () => {
       console.log("Translate button clicked");
       chrome.runtime.sendMessage({ type: "TRANSLATE", text: selectedText });
@@ -16,25 +15,25 @@ document.addEventListener("mouseup", function () {
     });
 
     document.body.appendChild(button);
-    setTimeout(() => {
-      document.body.removeChild(button);
-    }, 2000);
+    document.addEventListener("click", function () {
+      console.log("click");
+    });
   }
 });
 
 function createTranslateButton(rect) {
-  const button = document.createElement("button");
-  button.textContent = "Translate";
-  button.style.position = "absolute";
-  button.style.top = `${rect.bottom + window.scrollY}px`;
-  button.style.left = `${rect.left + window.scrollX}px`;
-  button.style.zIndex = "9999";
-  button.style.padding = "5px 10px";
-  button.style.backgroundColor = "#4CAF50";
-  button.style.color = "white";
-  button.style.border = "none";
-  button.style.cursor = "pointer";
-  return button;
+  const image = document.createElement("img");
+  image.className = "translate-image";
+  image.src = chrome.runtime.getURL("icons/icon.png");
+  image.style.position = "absolute";
+  image.style.top = `${rect.bottom + window.scrollY}px`;
+  image.style.left = `${rect.left + window.scrollX}px`;
+  image.style.zIndex = "9999";
+  image.style.width = "25px";
+  image.style.height = "25px";
+  image.style.rotate = "10%";
+  image.style.cursor = "pointer";
+  return image;
 }
 
 chrome.runtime.onMessage.addListener((message) => {

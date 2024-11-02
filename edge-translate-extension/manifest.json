@@ -1,9 +1,14 @@
 {
-  "name": "Word Translator",
+  "name": "简译",
   "version": "1.0",
-  "description": "Translate selected words",
+  "description": "Translate selected words.",
   "manifest_version": 3,
   "permissions": ["contextMenus", "activeTab", "scripting", "tabs"],
+  "icons": {
+    "16": "icons/icon.png",
+    "48": "icons/icon.png",
+    "128": "icons/icon.png"
+  },
   "host_permissions": ["*://*/*"],
   "background": {
     "service_worker": "background.js"
@@ -15,12 +20,14 @@
     }
   ],
   "action": {
+    "default_icon": "icons/icon.png",
+    "default_title": "简译",
     "default_popup": "popup.html"
   },
   "web_accessible_resources": [
     {
       "matches": ["*://*/*"],
-      "resources": ["libs/crypto-js.js"]
+      "resources": ["libs/crypto-js.js", "icons/icon.png"]
     }
   ]
 }
