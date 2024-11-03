@@ -4,8 +4,6 @@ document.addEventListener("mouseup", function () {
   const selectedText = window.getSelection().toString().trim();
 
   if (selectedText) {
-    console.log("Selected text:", selectedText);
-
     const rect = window.getSelection().getRangeAt(0).getBoundingClientRect();
     const button = createTranslateButton(rect);
     button.addEventListener("click", () => {
@@ -15,9 +13,6 @@ document.addEventListener("mouseup", function () {
     });
 
     document.body.appendChild(button);
-    document.addEventListener("click", function () {
-      console.log("click");
-    });
   }
 });
 
